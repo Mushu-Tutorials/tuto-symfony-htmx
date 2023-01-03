@@ -10,3 +10,7 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+// Install HTMX
+import 'htmx.org';
+window.htmx = require('htmx.org');
