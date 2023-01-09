@@ -1,0 +1,20 @@
+<div id="response-div">
+  <table class="table-fixed">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.lastname }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

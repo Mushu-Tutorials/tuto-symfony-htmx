@@ -14,7 +14,7 @@
             <a href="{{ path('app_htmx') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               HTMX
             </a>
-            <a hx-target="#htmx-div" hx-get="{{ path('app_htmx_click_to_edit') }}" hx-swap="outerHTML" href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+            <a hx-target="#response-div" hx-get="{{ path('app_htmx_list_users') }}" hx-swap="outerHTML" href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               Click to edit
             </a>
           </div>

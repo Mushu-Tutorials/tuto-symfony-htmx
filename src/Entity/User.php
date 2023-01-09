@@ -21,11 +21,13 @@ class User implements UserInterface
     private array $roles = [];
 
     #[ORM\Column(length: 255)]
-    private ?string $fisrtname = null;
+    private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
 
     public function getId(): ?int
     {
@@ -82,14 +84,14 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFisrtname(): ?string
+    public function getFirstname(): ?string
     {
-        return $this->fisrtname;
+        return $this->firstname;
     }
 
-    public function setFisrtname(string $fisrtname): self
+    public function setFirstname(string $firstname): self
     {
-        $this->fisrtname = $fisrtname;
+        $this->firstname = $firstname;
 
         return $this;
     }
