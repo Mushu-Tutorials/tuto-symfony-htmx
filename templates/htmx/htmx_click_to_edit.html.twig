@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HtmxController!{% endblock %}
+
+{% block body %}
+<div id="htmx-div">
+        {{ form_start(form) }}
+
+        <div class="overflow-hidden bg-grey-50 py-60 lg:py-24" id="response-div">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-base font-semibold text-indigo-600 tracking-wide uppercase">Oh! Un form en AJAX</h2>
+      <p class="mt-2 text-3xl font-extrabold text-grey-900 sm-text-4xl">
+        Restons en contact
+      </p>
+      <p class="mt-2 text-xl text-grey-500">
+        {{ form_start(form) }}
+        <div>
+          <label for="comment" class="block text-sm font-medium text-gray-700">Add your comment</label>
+          <div class="mt-1">
+            {# {{ form_widget(form.message) }} #}
+          </div>
+        </div>
+        {# {{ form_widget(form.submit) }} #}
+        {{ form_end(form) }}
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+<form hx-put="/contact/1" hx-target="this" hx-swap="outerHTML">
+  <div>
+    <label>First Name</label>
+    <input type="text" name="firstName" value="Joe">
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" name="lastName" value="Blow">
+  </div>
+  <div class="form-group">
+    <label>Email Address</label>
+    <input type="email" name="email" value="joe@blow.com">
+  </div>
+  <button class="btn">Submit</button>
+  <button class="btn" hx-get="/contact/1">Cancel</button>
+</form>
+</div>
+{% endblock %}
