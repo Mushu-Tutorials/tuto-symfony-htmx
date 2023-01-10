@@ -29,10 +29,9 @@ class HtmxController extends AbstractController
         ]);
     }
 
-    #[Route('/htmx_click_to_edit', name: 'app_htmx_click_to_edit')]
-    public function htmx_click_to_edit(Request $request, EntityManagerInterface $em): Response
+    #[Route('/htmx_user_edit', name: 'htmx_user_edit')]
+    public function htmx_user_edit(Request $request, EntityManagerInterface $em): Response
     {
-
         $user = new User;
 
         $form = $this->createForm(UserType::class, $user, [
