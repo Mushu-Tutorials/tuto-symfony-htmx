@@ -1,42 +1,39 @@
 <div id="htmx-user-edit">
-        {{ form_start(form) }}
-        {{ form_end(form) }}
+  {{ form_start(form) }}
 
-        {# <div class="overflow-hidden bg-grey-50 py-60 lg:py-24" id="response-div">
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center">
-
-      <p class="mt-2 text-xl text-grey-500">
-        {{ form_start(form) }}
-        <div>
-          <label for="comment" class="block text-sm font-medium text-gray-700">Add your comment</label>
-          <div class="mt-1">
-            {{ form_widget(form.message) }}
-          </div>
-        </div>
-        {{ form_widget(form.submit) }}
-        {{ form_end(form) }}
-      </p>
-    </div>
-  </div> #}
-</div>
-
-
-
-<form hx-put="/contact/1" hx-target="this" hx-swap="outerHTML">
   <div>
-    <label>First Name</label>
-    <input type="text" name="firstName" value="Joe">
+    <label for="username" class="sr-only">Username</label>
+    <div class="relative">
+      {{ form_widget(form.username) }}
+    </div>
   </div>
-  <div class="form-group">
-    <label>Last Name</label>
-    <input type="text" name="lastName" value="Blow">
+  <div>
+    <label for="firstname" class="sr-only">Firstname</label>
+    <div class="relative">
+      {{ form_widget(form.firstname) }}
+    </div>
   </div>
-  <div class="form-group">
-    <label>Email Address</label>
-    <input type="email" name="email" value="joe@blow.com">
+  <div>
+    <label for="lastname" class="sr-only">Lastname</label>
+    <div class="relative">
+      {{ form_widget(form.lastname) }}
+    </div>
   </div>
-  <button class="btn">Submit</button>
-  <button class="btn" hx-get="/contact/1">Cancel</button>
-</form>
+  <div>
+    <label for="email" class="sr-only">Email</label>
+    <div class="relative">
+      {{ form_widget(form.email) }}
+    </div>
+  </div>
+  <div class="flex items-center justify-between">
+    <p class="text-sm text-gray-500"></p>
+    <button hx-target="#htmx-user-edit" hx-post="{{ path('htmx_user_show', {id: user.id}) }}" type="submit" class="ml-3 inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white">
+      Test
+    </button>
+    {{ form_widget(form.submit) }}
+    <button hx-target="#htmx-user-edit" hx-get="{{ path('htmx_user_show', {id: user.id}) }}" type="cancel" class="ml-3 inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white">
+      Cancel
+    </button>
+  </div>
+  {{ form_end(form) }}
 </div>

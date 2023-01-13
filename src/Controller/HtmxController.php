@@ -29,24 +29,40 @@ class HtmxController extends AbstractController
         ]);
     }
 
-    #[Route('/htmx_user_edit', name: 'htmx_user_edit')]
-    public function htmx_user_edit(Request $request, EntityManagerInterface $em): Response
+    #[Route('/htmx_user_show/{id}', name: 'htmx_user_show')]
+    public function htmx_user_show(User $user): Response
     {
-        $user = new User;
-
-        $form = $this->createForm(UserType::class, $user, [
-            'action' => $this->generateUrl('app_htmx')
+        return $this->render('htmx/htmx_show_user.html.twig', [
+            'user' => $user,
         ]);
+    }
+
+    #[Route('/htmx_user_edit/{id}', name: 'htmx_user_edit')]
+    public function htmx_user_edit(User $user, Request $request, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(UserType::class, $user, [
+            'action' => $this->generateUrl('htmx_user_show', ['id' => $user->getId()]),
+            'attr' => [
+                // 'hx-post' => $this->generateUrl('htmx_user_edit', ['id' => $user->getId()]),
+                // 'hx-target' => '#htmx-user-edit',
+                // 'hx-swap' => 'outerHTML',
+                'class' => 'mx-auto mt-8 mb-0 max-w-md space-y-4'
+            ]
+        ]);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            // dd($user);
             $em->persist($user);
             $em->flush();
 
-            return $this->render('htmx/htmx.html.twig');
+            // return $this->render('htmx/htmx.html.twig');
         }
 
         return $this->render('htmx/htmx_click_to_edit.html.twig', [
-            'form' => $form->createView( ),
+            'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 }
